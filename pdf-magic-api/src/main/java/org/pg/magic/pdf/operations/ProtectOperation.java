@@ -10,14 +10,14 @@ import org.apache.pdfbox.pdmodel.encryption.AccessPermission;
 import org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class ProtectOperation extends SingleOutputOperation {
+public class ProtectOperation extends PDFOperationImpl {
 	
 	public ProtectOperation(Properties config) throws PDFOperationException {
 		super(config);
 	}
 
 	@Override
-	public File execute(File inputFile) throws PDFOperationException {
+	public void execute(File inputFile) throws PDFOperationException {
 		log.warning(inputFile.getAbsolutePath());
 		checkInputFile(inputFile);
 		
@@ -40,10 +40,11 @@ public class ProtectOperation extends SingleOutputOperation {
 			document.save(outputFile);
 			document.close();
 			
-			return outputFile;
+			super.outputFile = outputFile;
 		} catch (IOException e) {
 			throw new PDFOperationException(e);
 		}
 	}
+
 
 }

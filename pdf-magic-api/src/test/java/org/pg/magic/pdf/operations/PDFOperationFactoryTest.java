@@ -1,7 +1,10 @@
 package org.pg.magic.pdf.operations;
 
-import org.pg.magic.pdf.PDFOperationFactory.OperationTypes;
-import org.pg.magic.pdf.SingleOuptutOperationFactory;
+import java.io.File;
+
+import org.pg.magic.pdf.PDFOperation;
+import org.pg.magic.pdf.PDFOperationFactory;
+import org.pg.magic.pdf.PDFOperationFactory.PDFStandardOperationTypes;
 import org.pg.magic.pdf.exceptions.PDFFileNotFound;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.testng.annotations.Test;
@@ -10,10 +13,11 @@ public class PDFOperationFactoryTest extends SimplePDF {
 
 	@Test(expectedExceptions = { PDFFileNotFound.class })
 	public void getOperationWithNullFile() throws PDFOperationException {
-		SingleOuptutOperationFactory f = new SingleOuptutOperationFactory();
-		SingleOutputOperation operation = f.getOperation(OperationTypes.PDF_EXTRACT_TEXT, null);
+		PDFOperationFactory factory = new PDFOperationFactory();
+		PDFOperation operation = factory.getOperation(PDFStandardOperationTypes.PDF_FROM_IMAGE, null);
 
-		operation.execute(null);
+
+		operation.execute(new File(""));
 	}
 
 }

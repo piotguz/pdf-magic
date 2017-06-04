@@ -8,7 +8,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class UnProtectOperation extends SingleOutputOperation {
+public class UnProtectOperation extends PDFOperationImpl {
 
 	private static final String FILE_EXTENSION = "file.extension";
 	private static final String FILE_BASE_NAME = "file.base.name";
@@ -20,7 +20,7 @@ public class UnProtectOperation extends SingleOutputOperation {
 	}
 
 	@Override
-	public File execute(File inputFile) throws PDFOperationException {
+	public void execute(File inputFile) throws PDFOperationException {
 		checkRequiredParameters(PASSWORD);
 		checkInputFile(inputFile);
 		
@@ -38,11 +38,12 @@ public class UnProtectOperation extends SingleOutputOperation {
 			document.save(outputFile);
 			document.close();
 			
-			return outputFile;
+			super.outputFile = outputFile;
 		} catch (IOException e) {
 			throw new PDFOperationException(e);
 		}
 
 	}
+
 
 }

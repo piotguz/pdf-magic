@@ -10,14 +10,14 @@ import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class SplitOperation extends MultipleOutputsOperation {
+public class SplitOperation extends PDFOperationImpl {
 
 	public SplitOperation(Properties config) throws PDFOperationException {
 		super(config);
 	}
 
 	@Override
-	public List<File> execute(File inputFile) throws PDFOperationException {
+	public void execute(File inputFile) throws PDFOperationException {
 		checkInputFile(inputFile);
 
 		try {
@@ -44,7 +44,7 @@ public class SplitOperation extends MultipleOutputsOperation {
 			}
 
 			document.close();
-			return output;
+			super.outputFiles = output;
 		} catch (Exception e) {
 			throw new PDFOperationException(e);
 		}

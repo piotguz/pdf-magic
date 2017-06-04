@@ -8,7 +8,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPageTree;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class MergeOperation extends MultipleInputsOperation {
+public class MergeOperation extends PDFOperationImpl {
 
 	private static final String OUTPUT_FILE_NAME = "output.file.name";
 	private static final String OUTPUT_FOLDER = "output.folder";
@@ -18,7 +18,8 @@ public class MergeOperation extends MultipleInputsOperation {
 	}
 
 	@Override
-	public File execute(List<File> inputPdfFiles) throws PDFOperationException {
+	//TODO: consider using PDFMergeUtility
+	public void execute(List<File> inputPdfFiles) throws PDFOperationException {
 		checkRequiredParameters(OUTPUT_FOLDER, OUTPUT_FILE_NAME);
 		
 		PDDocument mergedPdf = new PDDocument();
@@ -32,8 +33,7 @@ public class MergeOperation extends MultipleInputsOperation {
 				PDPageTree pages = partPdf.getDocumentCatalog().getPages();
 				
 				pages.forEach(page -> mergedPdf.addPage(page));
-				
-//				partPdf.close();
+
 			}
 			
 			String outputFolder = config.getProperty(OUTPUT_FOLDER);
@@ -42,7 +42,7 @@ public class MergeOperation extends MultipleInputsOperation {
 			
 			mergedPdf.save(mergedPdfFile);
 			mergedPdf.close();
-			return mergedPdfFile;
+			super.outputFile = mergedPdfFile;
 		} catch (Exception e) {
 			throw new PDFOperationException(e);
 		}

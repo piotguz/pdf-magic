@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.pg.magic.pdf.PDFOperationFactory.OperationTypes;
-import org.pg.magic.pdf.SingleOuptutOperationFactory;
+import org.pg.magic.pdf.PDFOperation;
+import org.pg.magic.pdf.PDFOperationFactory;
+import org.pg.magic.pdf.PDFOperationFactory.PDFStandardOperationTypes;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.testng.annotations.Test;
 
@@ -20,19 +21,20 @@ public class PDFProtectTest extends SimplePDF {
 	public void protect() throws PDFOperationException, IOException {
 		loadSamplePDF("/Simple.pdf");
 		
-		SingleOuptutOperationFactory f = new SingleOuptutOperationFactory();
-		
 		Properties passwordConfig = new Properties();
 		passwordConfig.setProperty("owner.password", "test1");
 		passwordConfig.setProperty("user.password", "test2");
 		
-		SingleOutputOperation o = f.getOperation(OperationTypes.PDF_PROTECT, passwordConfig);
+		PDFOperationFactory factory = new PDFOperationFactory();
+		PDFOperation o = factory.getOperation(PDFStandardOperationTypes.PDF_PROTECT, passwordConfig);
+
 		
 		Logger log = Logger.getLogger("TEST");
 		
 		log.warning(inputPdf.getAbsolutePath());
 		
-		File protectedPdf = o.execute(inputPdf);
+		o.execute(inputPdf);
+		File protectedPdf = o.getOutputFile();
 		
 		assertNotNull(protectedPdf);
 		assertTrue(protectedPdf.exists());

@@ -10,19 +10,19 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class TextExtractOperation extends SingleOutputOperation {
+public class ExtractTextOperation extends PDFOperationImpl {
 	
 	private static final String FILE_ENCODING = "file.encoding";
 	private static final String FILE_EXTENSION = "file.extension";
 	private static final String FILE_BASE_NAME = "file.base.name";
 	private static final String FILE_PATH = "file.path";
 
-	public TextExtractOperation(Properties config) throws PDFOperationException {
+	public ExtractTextOperation(Properties config) throws PDFOperationException {
 		super(config);
 	}
 
 	@Override
-	public File execute(File inputFile) throws PDFOperationException {
+	public void execute(File inputFile) throws PDFOperationException {
 		checkInputFile(inputFile);
 		
 		try {
@@ -43,7 +43,7 @@ public class TextExtractOperation extends SingleOutputOperation {
 			
 			log.info(outputFile.toString());
 			
-			return outputFile;
+			super.outputFile = outputFile;
 		} catch (IOException e) {
 			throw new PDFOperationException(e);
 		}

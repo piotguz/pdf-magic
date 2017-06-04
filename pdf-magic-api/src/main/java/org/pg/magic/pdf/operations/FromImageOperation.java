@@ -11,14 +11,14 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
-public class FromImageOperation extends SingleOutputOperation {
+public class FromImageOperation extends PDFOperationImpl {
 
 	public FromImageOperation(Properties config) throws PDFOperationException {
 		super(config);
 	}
 
 	@Override
-	public File execute(File inputFile) throws PDFOperationException {
+	public void execute(File inputFile) throws PDFOperationException {
 		checkInputFile(inputFile, "jpg", "jpeg", "png");
 
 		try {
@@ -41,7 +41,7 @@ public class FromImageOperation extends SingleOutputOperation {
 			newPDF.save(newPDFFile );
 			newPDF.close();
 			
-			return newPDFFile;
+			super.outputFile = newPDFFile;
 		} catch (Exception e) {
 			throw new PDFOperationException(e);
 		}
