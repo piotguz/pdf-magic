@@ -3,7 +3,12 @@
 <suite name="pdf-magic-api-unit-tests">
 	<test name="pdf-operations">
 		<packages>
-			<package name="org.pg.magic.pdf.operations"/>
+			<package name="org.pg.magic.pdf.operations" />
+		</packages>
+	</test>
+	<test name="pdf-cmd">
+		<packages>
+			<package name="org.pg.magic.pdf.cmd" />
 		</packages>
 	</test>
 </suite>
