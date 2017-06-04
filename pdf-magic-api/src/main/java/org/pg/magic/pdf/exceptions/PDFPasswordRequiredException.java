@@ -11,8 +11,5 @@ public class PDFPasswordRequiredException extends PDFOperationException {
 		super(string, obj);
 	}
 
-	public PDFPasswordRequiredException(Throwable arg0) {
-		super(arg0);
-	}
 
 }

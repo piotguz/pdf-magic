@@ -1,4 +1,4 @@
-package org.pg.magic.pdf.textextract;
+package org.pg.magic.pdf.operations;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.pg.magic.pdf.PDFOperationFactory;
-import org.pg.magic.pdf.SimplePDF;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.pg.magic.pdf.operations.SingleOutputOperation;
 import org.pg.magic.pdf.operations.SingleOutputOperation.Type;

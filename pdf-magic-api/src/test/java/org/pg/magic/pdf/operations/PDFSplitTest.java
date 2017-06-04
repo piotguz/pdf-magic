@@ -1,4 +1,4 @@
-package org.pg.magic.pdf.split;
+package org.pg.magic.pdf.operations;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
@@ -12,7 +12,6 @@ import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.pg.magic.pdf.operations.MultipleOutputsOperation;
 import org.pg.magic.pdf.operations.MultipleOutputsOperation.Type;
 import org.pg.magic.pdf.PDFOperationFactory;
-import org.pg.magic.pdf.SimplePDF;
 import org.testng.annotations.Test;
 
 @Test

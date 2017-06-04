@@ -1,4 +1,4 @@
-package org.pg.magic.pdf;
+package org.pg.magic.pdf.operations;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;

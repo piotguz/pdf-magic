@@ -13,8 +13,7 @@ public class PDFOperationException extends Exception {
 	}
 
 
-	public PDFOperationException(Throwable arg0) {
-		super(arg0);
+	public PDFOperationException(Exception e) {
+		super(e);
 	}
-
 }

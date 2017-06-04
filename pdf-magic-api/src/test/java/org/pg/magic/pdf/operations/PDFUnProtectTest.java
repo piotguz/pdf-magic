@@ -1,4 +1,4 @@
-package org.pg.magic.pdf.protect;
+package org.pg.magic.pdf.operations;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.pg.magic.pdf.PDFOperationFactory;
-import org.pg.magic.pdf.SimplePDF;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.pg.magic.pdf.exceptions.PDFPasswordRequiredException;
 import org.pg.magic.pdf.operations.SingleOutputOperation;

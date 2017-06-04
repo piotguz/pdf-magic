@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.pg.magic.pdf.exceptions.PDFFileNotFound;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
 public abstract class PDFOperation<OutputType, InputType> {
@@ -23,10 +24,10 @@ public abstract class PDFOperation<OutputType, InputType> {
 		log.info("Checking input file");
 		
 		if (inputFile == null || !inputFile.exists())
-			throw new PDFOperationException("File %s does not exist!", inputFile);
+			throw new PDFFileNotFound("File %s does not exist!", inputFile);
 		
 		if (!inputFile.canRead())
-			throw new PDFOperationException("Cannot read file %s!", inputFile);
+			throw new PDFFileNotFound("Cannot read file %s!", inputFile);
 		
 		log.info(inputFile.getAbsolutePath());
 	}
