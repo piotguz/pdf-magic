@@ -10,12 +10,13 @@ import java.util.Properties;
 import org.pg.magic.pdf.PDFOperationFactory.OperationTypes;
 import org.pg.magic.pdf.SingleOuptutOperationFactory;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
-import org.pg.magic.pdf.exceptions.PDFPasswordRequiredException;
+import org.pg.magic.pdf.exceptions.PDFConfigExcpetion;
+import org.pg.magic.pdf.exceptions.PDFIncorrectFileType;
 import org.testng.annotations.Test;
 
 public class PDFUnProtectTest extends SimplePDF {
 	
-	@Test(expectedExceptions = {PDFPasswordRequiredException.class})
+	@Test(expectedExceptions = {PDFConfigExcpetion.class})
 	public void unprotectShouldFail() throws PDFOperationException, IOException {
 		loadSamplePDF("/Simple_protected.pdf");
 		SingleOuptutOperationFactory f = new SingleOuptutOperationFactory();

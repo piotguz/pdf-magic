@@ -12,6 +12,11 @@ import org.pg.magic.pdf.exceptions.PDFOperationException;
 
 public class TextExtractOperation extends SingleOutputOperation {
 	
+	private static final String FILE_ENCODING = "file.encoding";
+	private static final String FILE_EXTENSION = "file.extension";
+	private static final String FILE_BASE_NAME = "file.base.name";
+	private static final String FILE_PATH = "file.path";
+
 	public TextExtractOperation(Properties config) throws PDFOperationException {
 		super(config);
 	}
@@ -24,15 +29,15 @@ public class TextExtractOperation extends SingleOutputOperation {
 			PDDocument document = PDDocument.load(inputFile);
 			PDFTextStripper stripper = new PDFTextStripper();
 			
-			log.info("Extracting plan text...");
+			log.info("Extracting plain text...");
 			String text = stripper.getText(document);
 			
-			String filePath = config.getProperty("file.path", inputFile.getParent());
-			String fileBaseName = config.getProperty("file.base.name", FilenameUtils.getBaseName(inputFile.getName()));
-			String fileExtension = config.getProperty("file.extension","txt");
+			String filePath = config.getProperty(FILE_PATH, inputFile.getParent());
+			String fileBaseName = config.getProperty(FILE_BASE_NAME, FilenameUtils.getBaseName(inputFile.getName()));
+			String fileExtension = config.getProperty(FILE_EXTENSION,"txt");
 			
 			File outputFile = new File(String.format("%s/%s.%s", filePath , fileBaseName, fileExtension));
-			FileUtils.writeStringToFile(outputFile, text, config.getProperty("file.encoding","utf-8"));
+			FileUtils.writeStringToFile(outputFile, text, config.getProperty(FILE_ENCODING,"utf-8"));
 			
 			document.close();
 			

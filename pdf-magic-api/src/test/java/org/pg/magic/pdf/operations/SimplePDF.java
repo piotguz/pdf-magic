@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLDecoder;
 
 public abstract class SimplePDF {
 	protected File inputPdf;
@@ -19,7 +20,7 @@ public abstract class SimplePDF {
 		if (!skipAsserts)
 			assertNotNull(inputPDFUrl, "Looks like test pdf does not exist :-(");
 		
-		inputPdf = new File(inputPDFUrl.getFile());
+		inputPdf = new File(URLDecoder.decode(inputPDFUrl.getFile(), "utf-8"));
 
 		if (!skipAsserts) {			
 			assertTrue(inputPdf.exists());
