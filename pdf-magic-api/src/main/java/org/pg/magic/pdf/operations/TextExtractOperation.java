@@ -3,7 +3,6 @@ package org.pg.magic.pdf.operations;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -12,7 +11,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
 public class TextExtractOperation extends SingleOutputOperation {
-	Logger log = Logger.getLogger(getClass().getName());
 	
 	public TextExtractOperation(Properties config) throws PDFOperationException {
 		super(config);

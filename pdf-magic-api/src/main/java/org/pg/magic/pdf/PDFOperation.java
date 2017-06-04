@@ -13,7 +13,7 @@ public abstract class PDFOperation<OutputType, InputType> {
 	
 	protected PDFOperation(Properties config) throws PDFOperationException {
 		if (config == null)
-			config = new Properties();
+			this.config = new Properties();
 		else
 			this.config = config;
 	}

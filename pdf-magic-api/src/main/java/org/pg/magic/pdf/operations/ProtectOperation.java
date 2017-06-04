@@ -3,7 +3,6 @@ package org.pg.magic.pdf.operations;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,7 +11,6 @@ import org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 
 public class ProtectOperation extends SingleOutputOperation {
-	Logger log = Logger.getLogger(getClass().getName());
 	
 	public ProtectOperation(Properties config) throws PDFOperationException {
 		super(config);
