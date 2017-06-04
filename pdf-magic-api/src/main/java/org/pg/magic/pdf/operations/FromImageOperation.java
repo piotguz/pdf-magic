@@ -31,7 +31,7 @@ public class FromImageOperation extends SingleOutputOperation {
 			PDPage page = new PDPage(new PDRectangle(pdImage.getWidth(), pdImage.getHeight()));
 			
 			PDPageContentStream contentStream = new PDPageContentStream(newPDF, page);
-			contentStream.drawImage(pdImage, 70, 250);
+			contentStream.drawImage(pdImage, 0, 0);
 
 			contentStream.close();
 			
