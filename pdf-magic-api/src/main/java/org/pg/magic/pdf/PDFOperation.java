@@ -32,4 +32,7 @@ public abstract class PDFOperation<OutputType, InputType> {
 		log.info(inputFile.getAbsolutePath());
 	}
 
+	public enum Type {
+		PDF_SPLIT, PDF_TEXT_EXTRACT, PDF_PROTECT, PDF_UNPROTECT;
+	}
 }

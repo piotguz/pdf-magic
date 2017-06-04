@@ -30,7 +30,7 @@ public class SplitOperation extends MultipleOutputsOperation {
 			String originalFileNameFolder = config.getProperty("output.folder", inputFile.getParent());
 
 			int pageNum = 0;
-			List<File> output = new ArrayList<>();
+			List<File> output = new ArrayList<File>();
 
 			for (PDDocument page : pages) {
 				String pageFileStr = String.format("%s/%s_page%d.%s", originalFileNameFolder, originalFileName, pageNum,

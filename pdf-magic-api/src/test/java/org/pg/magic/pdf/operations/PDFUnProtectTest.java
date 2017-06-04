@@ -7,11 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.pg.magic.pdf.PDFOperationFactory;
+import org.pg.magic.pdf.PDFOperationFactory.OperationTypes;
+import org.pg.magic.pdf.SingleOuptutOperationFactory;
 import org.pg.magic.pdf.exceptions.PDFOperationException;
 import org.pg.magic.pdf.exceptions.PDFPasswordRequiredException;
-import org.pg.magic.pdf.operations.SingleOutputOperation;
-import org.pg.magic.pdf.operations.SingleOutputOperation.Type;
 import org.testng.annotations.Test;
 
 public class PDFUnProtectTest extends SimplePDF {
@@ -19,9 +18,9 @@ public class PDFUnProtectTest extends SimplePDF {
 	@Test(expectedExceptions = {PDFPasswordRequiredException.class})
 	public void unprotectShouldFail() throws PDFOperationException, IOException {
 		loadSamplePDF("/Simple_protected.pdf");
-		PDFOperationFactory f = new PDFOperationFactory();
+		SingleOuptutOperationFactory f = new SingleOuptutOperationFactory();
 		
-		SingleOutputOperation o = f.getOperation(Type.PDF_UNPROTECT, null);
+		SingleOutputOperation o = f.getOperation(OperationTypes.PDF_UNPROTECT, null);
 		
 		File unprotectedPdf = o.execute(inputPdf);
 		
@@ -32,12 +31,12 @@ public class PDFUnProtectTest extends SimplePDF {
 	@Test
 	public void unprotect() throws PDFOperationException, IOException {
 		loadSamplePDF("/Simple_protected.pdf");
-		PDFOperationFactory f = new PDFOperationFactory();
+		SingleOuptutOperationFactory f = new SingleOuptutOperationFactory();
 		
 		Properties config = new Properties();
 		config.setProperty("password", "test1");
 		
-		SingleOutputOperation o = f.getOperation(Type.PDF_UNPROTECT, config);
+		SingleOutputOperation o = f.getOperation(OperationTypes.PDF_UNPROTECT, config);
 		
 		File unprotectedPdf = o.execute(inputPdf);
 		
